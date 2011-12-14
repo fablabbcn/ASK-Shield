@@ -109,6 +109,8 @@ void loop(void) {
     sound = getSound(micpin, sensorreadings); 
     tgs2442 = getTgs2442(tgspin, sensorreadings); 
     tgs4142 = getTgs4142(micspin, sensorreadings); 
+    
+   
 
     if (seconds == transmitpachube) {                  
       seconds = 0;
@@ -147,7 +149,7 @@ float computeVolts(int rawADC) {
 }
 
 
-int getAverage(int sensorPin, int avgNum) {
+int getAverage(int sensorPin, int avgNum, int del) {
   int i=0;
   int sum = 0;
   int value = 0;
@@ -155,13 +157,32 @@ int getAverage(int sensorPin, int avgNum) {
   {
     value = analogRead(sensorPin);
     sum = sum + value;
+    delay(del);
   }
   return(sum/avgNum);
 }
 
 
+int peak(int peakPin, int peakNum, int del)
+{
+  int i=0;
+  unsigned int value = 0;
+  unsigned int valueMax = 0;
+  unsigned int result = 0;
 
+  for(i=0 ; i<peakNum ; i++)
+  {
+    value = analogRead(peakPin);
 
+    // record the maximum sensor value
+    if (value > valueMax) 
+      valueMax = value;
+
+    delay(del);
+
+  }
+  return(valueMax);
+}
 
 
 

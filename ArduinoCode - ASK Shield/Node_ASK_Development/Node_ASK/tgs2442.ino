@@ -8,7 +8,8 @@ int getTgs2442(int tgsPin, int sensorReadings) {
   delay(981);
   digitalWrite(figarocircuit, LOW);// turn on sensing VCC
   delay(3);
-  int figaroCOVal = getAverage(tgsPin, sensorReadings); // take average measurement here
+  int figaroCOVal = getAverage(tgsPin, sensorReadings, 1); // take average measurement here
+  Serial.println("TGS2442 read it");
   delay(2);
   return figaroCOVal;
 }
