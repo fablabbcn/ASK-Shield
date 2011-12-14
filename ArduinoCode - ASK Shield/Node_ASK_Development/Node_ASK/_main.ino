@@ -47,7 +47,7 @@ int humidity;
 int light;
 int sound;
 int tgs2442;
-int tgs4142;
+int tgs4161;
 
 //XBee global variables
 #define XBEE_PAYLOAD_LEN 40      //this should agree with the definition in the remote code
@@ -106,9 +106,9 @@ void loop(void) {
     temp = getTemp(temppin, sensorreadings); 
     humidity = getHumidity(humpin, sensorreadings); 
     light = getLight(lightpin, sensorreadings); 
-    sound = getSound(micpin, sensorreadings); 
-    tgs2442 = getTgs2442(tgspin, sensorreadings); 
-    tgs4142 = getTgs4142(micspin, sensorreadings); 
+    sound = getSound(micpin); 
+//    tgs2442 = getTgs2442(tgspin, sensorreadings); 
+    tgs4161 = getTgs4161(tgspin, sensorreadings); 
     
    
 
@@ -133,8 +133,8 @@ void loop(void) {
       Serial.print("Tgs2442: ");      
       Serial.print(tgs2442);  
       Serial.print(" ");              
-      Serial.print("Tgs4142: ");      
-      Serial.println(tgs4142);      
+      Serial.print("tgs4161: ");      
+      Serial.println(tgs4161);      
     }
 
     digitalWrite(blinkpin, blink = !blink);  //blink the heartbeat LED
@@ -142,47 +142,6 @@ void loop(void) {
   }
 }
 
-
-
-float computeVolts(int rawADC) {
-  return (rawADC*vref)/1024.0;
-}
-
-
-int getAverage(int sensorPin, int avgNum, int del) {
-  int i=0;
-  int sum = 0;
-  int value = 0;
-  for(i=0 ; i<avgNum ; i++)
-  {
-    value = analogRead(sensorPin);
-    sum = sum + value;
-    delay(del);
-  }
-  return(sum/avgNum);
-}
-
-
-int peak(int peakPin, int peakNum, int del)
-{
-  int i=0;
-  unsigned int value = 0;
-  unsigned int valueMax = 0;
-  unsigned int result = 0;
-
-  for(i=0 ; i<peakNum ; i++)
-  {
-    value = analogRead(peakPin);
-
-    // record the maximum sensor value
-    if (value > valueMax) 
-      valueMax = value;
-
-    delay(del);
-
-  }
-  return(valueMax);
-}
 
 
 
