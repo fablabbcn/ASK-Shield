@@ -3,7 +3,7 @@
 
 /* Debugging! */
 
-#define debuggingsensors false // if true turns off xbee and debuggs the sensors in serial
+#define debuggingsensors true // if true turns off xbee and debuggs the sensors in serial
 
 
 /* Settings */
