@@ -1,8 +1,6 @@
 #include <XBee.h>                //http://code.google.com/p/xbee-arduino/
 #include <math.h>
 
-
-
 /* Settings */
 
 #define blinkpin 13  //heartbeat LED must change. Use it by the GPS.
@@ -13,7 +11,7 @@
 
 // SENSOR DEF
 
-#define vref 4.99 // For the computeVolts(); funtcion.
+#define vref 5 // For the computeVolts(); funtcion.
 
 #define micpin A0
 #define lightpin A1
@@ -46,8 +44,8 @@ int temp;
 int humidity;
 int light;
 int sound;
-int tgs2442;
-int tgs4161;
+float tgs2442;
+float tgs4161;
 
 //XBee global variables
 #define XBEE_PAYLOAD_LEN 40      //this should agree with the definition in the remote code
@@ -65,7 +63,6 @@ ModemStatusResponse msr = ModemStatusResponse();
 
 
 void setup() {
-
   pinMode(micpin, INPUT);             
   pinMode(lightpin, INPUT);             
   pinMode(temppin, INPUT);            
@@ -75,7 +72,8 @@ void setup() {
 
   pinMode(figaroheater, OUTPUT);
   pinMode(figarocircuit, OUTPUT);    
-  pinMode(blinkpin, OUTPUT);    
+  pinMode(blinkpin, OUTPUT);
+
   if (debuggingsensors == false) {                  
     xbee.begin(9600);               //does Serial.begin()
     delay(5000);                    //give the XBee time to associate
@@ -98,21 +96,21 @@ void loop(void) {
 
 
 
-  if (msNow > msLast + readsensors) {                 //defined at readsensors
+  if (msNow > msLast + readsensors || debuggingsensors == true) {                 //defined at readsensors
 
-     msLast = msNow;
+    msLast = msNow;
 
 
     temp = getTemp(temppin, sensorreadings); 
     humidity = getHumidity(humpin, sensorreadings); 
     light = getLight(lightpin, sensorreadings); 
     sound = getSound(micpin); 
-//    tgs2442 = getTgs2442(tgspin, sensorreadings); 
-    tgs4161 = getTgs4161(tgspin, sensorreadings); 
-    
-   
 
-    if (seconds == transmitpachube) {                  
+    //    tgs2442 = getTgs2442(tgspin, sensorreadings); 
+    tgs4161 = getTgs4161(tgspin); 
+
+
+    if (seconds == transmitpachube && debuggingsensors == false ) {                  
       seconds = 0;
       txPachube();
     }
@@ -134,7 +132,7 @@ void loop(void) {
       Serial.print(tgs2442);  
       Serial.print(" ");              
       Serial.print("tgs4161: ");      
-      Serial.println(tgs4161);      
+      Serial.println(tgs4161);        
     }
 
     digitalWrite(blinkpin, blink = !blink);  //blink the heartbeat LED
@@ -143,6 +141,7 @@ void loop(void) {
 }
 
 
+/* Sensor global methods are now on the methods tab */
 
 
 

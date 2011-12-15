@@ -8,19 +8,24 @@ float computeAdc(float volts) {
 
 int getAverage(int sensorPin, int avgNum, int del) {
   int i=0;
-  int sum = 0;
-  int value = 0;
+  long sum = 0;
+  unsigned int value = 0;
+  unsigned int result = 0;
+
   for(i=0 ; i<avgNum ; i++)
   {
     value = analogRead(sensorPin);
     sum = sum + value;
-    delay(del);
+    delayMicroseconds(del);
   }
-  return(sum/avgNum);
+  result = sum/avgNum;
+  return(result);
+  
+  
 }
 
 
-int peak(int peakPin, int peakNum, int del)
+int getPeak(int peakPin, int peakNum, int del)
 {
   int i=0;
   unsigned int value = 0;
@@ -41,7 +46,7 @@ int peak(int peakPin, int peakNum, int del)
   return(valueMax);
 }
 
-float fscale( float originalMin, float originalMax, float newBegin, float
+float computeFscale( float originalMin, float originalMax, float newBegin, float
 newEnd, float inputValue, float curve){
 
   float OriginalRange = 0;
