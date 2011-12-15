@@ -26,8 +26,9 @@ float getTgs4161(int tgsPin)
   figaroCO2Log = computeFscale( 0, 19, 350, 10000, incEmc , -3.8); // 1 in RAW is 91,2mV in the scale
   figaroCO2Log = (alpha * figaroCO2Log_last  + (1 - alpha) * figaroCO2Log); //smoothing
   figaroCO2Log_last = figaroCO2Log;
-  
+
   return figaroCO2Log;
 
 }
+
 

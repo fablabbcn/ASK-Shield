@@ -82,57 +82,58 @@ void buildPachubePayload(int feedNumber) {
   //    strcat(cPayload, myInt);
   //    strcat(cPayload, ",");
 
-    itoa(light, myInt, 10);        //light
-    strcat(cPayload, myInt);
-    strcat(cPayload, ",");
-    
-    itoa(temp, myInt, 10);        //temperature
-    strcat(cPayload, myInt);
-    strcat(cPayload, ",");
-    
-    itoa(humidity, myInt, 10);        //humidity
-    strcat(cPayload, myInt);
-    strcat(cPayload, ",");
-
-//    itoa(sound, myInt, 10);        //mic
-//    strcat(cPayload, myInt);
-//    strcat(cPayload, ",");
-//    
-//    itoa(tgs2442, myInt, 10);        //tgs2442
-//    strcat(cPayload, myInt);
-//    strcat(cPayload, ",");
-//    
-//    itoa(tgs4142, myInt, 10);        //tgs4142
-//    strcat(cPayload, myInt);
-//    strcat(cPayload, ",");
-    
-
-/*
-
-  UPGRADE for Pachube API 2.0 - Not finished
-
-  strcat(cPayload, "1");
-  strcat(cPayload, ",");
-  itoa(light, myInt, 10);      
+  itoa(light, myInt, 10);        //light
   strcat(cPayload, myInt);
-  strcat(cPayload, "\n");
-  
-  strcat(cPayload, "2");
   strcat(cPayload, ",");
-  itoa(temp, myInt, 10);      
-  strcat(cPayload, myInt);
-  strcat(cPayload, "\n");
-  
-  strcat(cPayload, "3");
-  strcat(cPayload, ",");
-  itoa(humidity, myInt, 10);      
-  strcat(cPayload, myInt);
-  strcat(cPayload, "\n");
 
-*/
+  itoa(temp, myInt, 10);        //temperature
+  strcat(cPayload, myInt);
+  strcat(cPayload, ",");
+
+  itoa(humidity, myInt, 10);        //humidity
+  strcat(cPayload, myInt);
+  strcat(cPayload, ",");
+
+  //    itoa(sound, myInt, 10);        //mic
+  //    strcat(cPayload, myInt);
+  //    strcat(cPayload, ",");
+  //    
+  //    itoa(tgs2442, myInt, 10);        //tgs2442
+  //    strcat(cPayload, myInt);
+  //    strcat(cPayload, ",");
+  //    
+  //    itoa(tgs4142, myInt, 10);        //tgs4142
+  //    strcat(cPayload, myInt);
+  //    strcat(cPayload, ",");
+
+
+  /*
+
+   UPGRADE for Pachube API 2.0 - Not finished
+   
+   strcat(cPayload, "1");
+   strcat(cPayload, ",");
+   itoa(light, myInt, 10);      
+   strcat(cPayload, myInt);
+   strcat(cPayload, "\n");
+   
+   strcat(cPayload, "2");
+   strcat(cPayload, ",");
+   itoa(temp, myInt, 10);      
+   strcat(cPayload, myInt);
+   strcat(cPayload, "\n");
+   
+   strcat(cPayload, "3");
+   strcat(cPayload, ",");
+   itoa(humidity, myInt, 10);      
+   strcat(cPayload, myInt);
+   strcat(cPayload, "\n");
+   
+   */
 
   for (int i=0; i<XBEE_PAYLOAD_LEN; i++) {
     xbeePayload[i].C = cPayload[i];
   }
 }
+
 

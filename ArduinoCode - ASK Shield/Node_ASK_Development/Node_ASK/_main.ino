@@ -1,13 +1,14 @@
 #include <XBee.h>                //http://code.google.com/p/xbee-arduino/
 #include <math.h>
 
+/* Debugging! */
+
+#define debuggingsensors false // if true turns off xbee and debuggs the sensors in serial
+
+
 /* Settings */
 
 #define blinkpin 13  //heartbeat LED must change. Use it by the GPS.
-
-// DEBUG
-
-#define debuggingsensors true // if true turns off xbee and debuggs the sensors in serial
 
 // SENSOR DEF
 
@@ -33,8 +34,7 @@
 #define PACHUBE_FEED_NBR 25978  //Pachube feed number to send the data to
 XBeeAddress64 coordAddr = XBeeAddress64(0x0013A200, 0x407A1FB0);  //Network coordinator forwards data to Pachube
 
-#define transmitpachube 60 //transmit pachube data every 60 sec
-
+#define transmitpachube 10 //transmit pachube data every 60 sec
 
 
 //other global variables
@@ -62,6 +62,8 @@ ZBRxResponse rx = ZBRxResponse();
 ModemStatusResponse msr = ModemStatusResponse();
 
 
+
+
 void setup() {
   pinMode(micpin, INPUT);             
   pinMode(lightpin, INPUT);             
@@ -74,7 +76,7 @@ void setup() {
   pinMode(figarocircuit, OUTPUT);    
   pinMode(blinkpin, OUTPUT);
 
-  if (debuggingsensors == false) {                  
+//  if (debuggingsensors == false) {                  
     xbee.begin(9600);               //does Serial.begin()
     delay(5000);                    //give the XBee time to associate
   } 
@@ -83,6 +85,9 @@ void setup() {
   }
 
 }
+
+
+
 
 void loop(void) {
   static boolean blink;
@@ -95,7 +100,6 @@ void loop(void) {
   }
 
 
-
   if (msNow > msLast + readsensors || debuggingsensors == true) {                 //defined at readsensors
 
     msLast = msNow;
@@ -105,8 +109,7 @@ void loop(void) {
     humidity = getHumidity(humpin, sensorreadings); 
     light = getLight(lightpin, sensorreadings); 
     sound = getSound(micpin); 
-
-    //    tgs2442 = getTgs2442(tgspin, sensorreadings); 
+//    tgs2442 = getTgs2442(tgspin, sensorreadings); 
     tgs4161 = getTgs4161(tgspin); 
 
 

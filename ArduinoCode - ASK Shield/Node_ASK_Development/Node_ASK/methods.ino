@@ -20,8 +20,8 @@ int getAverage(int sensorPin, int avgNum, int del) {
   }
   result = sum/avgNum;
   return(result);
-  
-  
+
+
 }
 
 
@@ -119,6 +119,7 @@ newEnd, float inputValue, float curve){
 
   return rangedValue;
 }
+
 
 
 
