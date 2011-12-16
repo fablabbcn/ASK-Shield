@@ -1,4 +1,4 @@
-#include <XBee.h>                //http://code.google.com/p/xbee-arduino/
+
 #include <math.h>
 
 /* Debugging! */
@@ -29,10 +29,6 @@
 
 #define readsensors 1000 // one second
 
-// PACHUBE DEF
-
-#define PACHUBE_FEED_NBR 25978  //Pachube feed number to send the data to
-XBeeAddress64 coordAddr = XBeeAddress64(0x0013A200, 0x407A1FB0);  //Network coordinator forwards data to Pachube
 
 #define transmitpachube 10 //transmit pachube data every 60 sec
 
@@ -46,22 +42,6 @@ int light;
 int sound;
 float tgs2442;
 float tgs4161;
-
-//XBee global variables
-#define XBEE_PAYLOAD_LEN 40      //this should agree with the definition in the remote code
-XBee xbee = XBee();              //create the XBee object
-union {
-  byte B; 
-  char C;
-} 
-
-xbeePayload[XBEE_PAYLOAD_LEN];
-ZBTxRequest zbTx = ZBTxRequest();
-ZBTxStatusResponse txStatus = ZBTxStatusResponse();
-ZBRxResponse rx = ZBRxResponse();
-ModemStatusResponse msr = ModemStatusResponse();
-
-
 
 
 void setup() {
@@ -77,8 +57,7 @@ void setup() {
   pinMode(blinkpin, OUTPUT);
 
   if (debuggingsensors == false) {                  
-    xbee.begin(9600);               //does Serial.begin()
-    delay(5000);                    //give the XBee time to associate
+    setupWiFly();
   } 
   else {
     Serial.begin(9600);               //does Serial.begin()
@@ -95,11 +74,6 @@ void loop(void) {
 
   msNow = millis();
 
-  if (debuggingsensors == false) {                  
-    readXBee();                                  //check for incoming XBee traffic
-  }
-
-
   if (msNow > msLast + readsensors || debuggingsensors == true) {                 //defined at readsensors
 
     msLast = msNow;
@@ -115,7 +89,7 @@ void loop(void) {
 
     if (seconds++ == transmitpachube && debuggingsensors == false) {                  
       seconds = 0;
-      txPachube();
+      txWiFly();
     }
 
     if (debuggingsensors == true) { 

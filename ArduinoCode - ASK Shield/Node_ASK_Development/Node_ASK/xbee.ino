@@ -94,17 +94,17 @@ void buildPachubePayload(int feedNumber) {
   strcat(cPayload, myInt);
   strcat(cPayload, ",");
 
-  //    itoa(sound, myInt, 10);        //mic
-  //    strcat(cPayload, myInt);
-  //    strcat(cPayload, ",");
-  //    
-  //    itoa(tgs2442, myInt, 10);        //tgs2442
-  //    strcat(cPayload, myInt);
-  //    strcat(cPayload, ",");
-  //    
-  //    itoa(tgs4142, myInt, 10);        //tgs4142
-  //    strcat(cPayload, myInt);
-  //    strcat(cPayload, ",");
+  itoa(int(sound), myInt, 10);        //mic
+  strcat(cPayload, myInt);
+  strcat(cPayload, ",");
+
+//  itoa(tgs2442, myInt, 10);        //tgs2442
+//  strcat(cPayload, myInt);
+//  strcat(cPayload, ",");
+
+  itoa(int(tgs4161), myInt, 10);        //tgs4142
+  strcat(cPayload, myInt);
+//  strcat(cPayload, ",");
 
 
   /*
@@ -135,5 +135,6 @@ void buildPachubePayload(int feedNumber) {
     xbeePayload[i].C = cPayload[i];
   }
 }
+
 
 

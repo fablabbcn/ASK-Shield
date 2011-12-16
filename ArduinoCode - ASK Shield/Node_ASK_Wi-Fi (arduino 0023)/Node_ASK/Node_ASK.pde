@@ -1,25 +1,17 @@
 /*----------------------------------------------------------------------*
- * Base station for XBee sensor network                                 *
+ * ASK SHIELD Firmware (Not 1.0 compatible)                             *
  *                                                                      *
- * The base station receives data from remote sensor units and uploads  *
- * it to Pachube.                                                       *
+ * IAAC + Hangar + FabLabBcn                                            *
  *                                                                      *
+ *                                                                      *
+ *                                                                      *
+ * Based on Pachube Node by                                             *
  * Jack Christensen                                                     *
  * V1.0 28Apr2011                                                       *
  *                                                                      *
- * Hardware:                                                            *
- * (1) Arduino Uno                                                      *
- * (1) Arduino Ethernet shield                                          *
- * (1) XBee ZB low power Zigbee Module,                                 *
- *     Digi Product ID XB24-Z7CIT-004, XB24-Z7WIT-004, XB24-Z7SIT-004,  *
- *     or XB24-Z7UIT-004.                                               *
- * (1) Adafruit Industries XBee Adapter, ID 126                         *
- * (1) LED for heartbeat (optional)                                     *
- * (1) 330-ohm resistor for heartbeat LED (optional)                    *
- *                                                                      *
  * XBee configuration:                                                  *
- * 1. Load the Zigbee Coordinator API firmware (I used Version 2170).   *
- * 2. Set the PAN ID as desired, to match that of the sensor unit(s).   *
+ * 1. Load the Zigbee Router API firmware (I used Version 2370).        *
+ * 2. Set the PAN ID as desired, to match that of the base unit.        *
  * 3. Set API mode 2 (AP=2).                                            *
  * 4. Set baud rate to 9600.                                            *
  *                                                                      *
