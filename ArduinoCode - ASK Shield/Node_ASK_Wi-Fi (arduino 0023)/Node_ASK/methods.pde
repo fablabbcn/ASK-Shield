@@ -1,3 +1,5 @@
+/* ASK Shield - Sensors shared functions */
+
 float computeVolts(int rawADC) {
   return (rawADC*vref)/1024.0;
 }

@@ -4,9 +4,9 @@
 
 //#define TGS4161_350  0.29 // victor
 //#define TGS4161_350  0.09
-//#define TGS4161_350  0.30
+#define TGS4161_350  0.31
 
-#define TGS4161_350  0.32
+//#define TGS4161_350  0.32
 
 int figaroCO2Val = 0;
 float figaroCO2Log = 0;

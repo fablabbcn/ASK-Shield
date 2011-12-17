@@ -1,7 +1,7 @@
 #include "WiFly.h"
 
 // PACHUBE
-#define PACHUBEFEED "42045"
+#define PACHUBE_FEED "42045"
 #define APIKEY "nKn8ldoeUYHFdcLymuWAAm6KfblczFJFCIc8GT2_G30"
 #define TIMETOUPDATE 15000  // frequency of update - every 15 seconds
 
@@ -38,15 +38,17 @@ void setupWiFly() {
 }
 
 void txWiFly() {
-//  
-//    long tempC = 999.0;
-//    sprintf(buff,"0,%d\n1,%d",i++,tempC);
-    
-  sprintf(buff,"0,%d\n1,%d\n2,%d\n",light,temp,humidity);
+  //  
+  //    long tempC = 999.0;
+  //    sprintf(buff,"0,%d\n1,%d",i++,tempC);
+
+//  sprintf(buff,"0,%d\n1,%d\n2,%d\n",light,temp,humidity);
+
+  sprintf(buff,"0,%d\n1,%d\n2,%d\n3,%d\n4,%d\n",light,temp,humidity, sound, tgs4161);
 
   if (client.connect()) {
     client.print("PUT /v2/feeds/");  // APIV2
-    client.print(PACHUBEFEED);
+    client.print(PACHUBE_FEED);
     client.println(".csv HTTP/1.1");
     client.println("Host: api.pachube.com");
     client.print("X-PachubeApiKey: ");
@@ -66,6 +68,7 @@ void txWiFly() {
     client.stop();
   }
 }
+
 
 
 

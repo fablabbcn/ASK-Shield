@@ -30,7 +30,9 @@ int getSound(int micPin)
 
   lastValue = smoothValue;
 
-  dbValue = computeFscale(50, 800, 18, 92, smoothValue, 5.5); // logarithm response mapping!!!
+//  dbValue = computeFscale(50, 800, 18, 92, smoothValue, 5.5); // logarithm response mapping!!!
+
+    dbValue = computeFscale( 50, 800, 11, 92, smoothValue, 5.5); // logarithm response mapping!!!
 
 //  dbValue = computeFscale(50, 800, 35, 92, smoothValue, 5.5); // logarithm response mapping!!!
 

@@ -1,5 +1,5 @@
 void txPachube() {
-  buildPachubePayload(PACHUBE_FEED_NBR);            //build the XBee payload
+  buildPachubePayload(PACHUBE_FEED);            //build the XBee payload
   xbeeTX(coordAddr, strlen(&xbeePayload[0].C));     //send it
 }
 

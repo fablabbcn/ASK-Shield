@@ -8,7 +8,15 @@
 
 /* Settings */
 
-#define blinkpin 13  //heartbeat LED must change. Use it by the GPS.
+
+// PACHUBE DEF
+
+#define PACHUBE_FEED 25978  //Pachube feed number to send the data to
+XBeeAddress64 coordAddr = XBeeAddress64(0x0013A200, 0x407A1FB0);  //Network coordinator forwards data to Pachube
+
+#define transmitpachube 10 // every 2 sensor readings
+
+#define readsensors 1000 // one second
 
 // SENSOR DEF
 
@@ -27,15 +35,7 @@
 
 #define sensorreadings 10
 
-#define readsensors 1000 // one second
-
-// PACHUBE DEF
-
-#define PACHUBE_FEED_NBR 25978  //Pachube feed number to send the data to
-XBeeAddress64 coordAddr = XBeeAddress64(0x0013A200, 0x407A1FB0);  //Network coordinator forwards data to Pachube
-
-#define transmitpachube 10 //transmit pachube data every 60 sec
-
+#define blinkpin 13  //heartbeat LED must change. Use it by the GPS.
 
 //other global variables
 unsigned long msNow, msLast;     //for timing transmissions, etc.

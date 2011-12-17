@@ -1,9 +1,11 @@
-
+#include <SD.h>
 #include <math.h>
 
 /* Debugging! */
 
-#define debuggingsensors false // if true turns off xbee and debuggs the sensors in serial
+#define debuggingsensors true // if true turns off xbee and debuggs the sensors in serial
+
+#define logsd false // if true turns off xbee and debuggs the sensors in serial
 
 
 /* Settings */
@@ -58,9 +60,14 @@ void setup() {
 
   if (debuggingsensors == false) {                  
     setupWiFly();
+
   } 
   else {
     Serial.begin(9600);               //does Serial.begin()
+  }
+
+  if (logsd == true){
+    setupSD();
   }
 
 }
@@ -83,13 +90,18 @@ void loop(void) {
     humidity = getHumidity(humpin, sensorreadings); 
     light = getLight(lightpin, sensorreadings); 
     sound = getSound(micpin); 
-//    tgs2442 = getTgs2442(tgspin, sensorreadings); 
+    //    tgs2442 = getTgs2442(tgspin, sensorreadings); 
     tgs4161 = getTgs4161(tgspin); 
+    
 
-
+    
     if (seconds++ == transmitpachube && debuggingsensors == false) {                  
       seconds = 0;
       txWiFly();
+    }
+
+    if (logsd == true){
+      logSD();
     }
 
     if (debuggingsensors == true) { 
@@ -119,6 +131,8 @@ void loop(void) {
 
 
 /* Sensor global methods are now on the methods tab */
+
+
 
 
 
