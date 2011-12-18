@@ -147,7 +147,7 @@ void updatePachubesSettings() {
   dOut.addData(2, "Hum");
   dOut.addData(3, "Noise");
   //  dOut.addData(4, "Hum");
-  dOut.addData(5, "Sound");
+  dOut.addData(5, "C02");
 }
 
 String printResponse (int response) {
