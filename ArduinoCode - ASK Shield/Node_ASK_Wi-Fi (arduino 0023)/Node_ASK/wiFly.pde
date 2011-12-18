@@ -1,15 +1,23 @@
 #include "WiFly.h"
 
 // PACHUBE
-#define PACHUBE_FEED "42045"
+#define PACHUBE_FEED "42124"
 #define APIKEY "nKn8ldoeUYHFdcLymuWAAm6KfblczFJFCIc8GT2_G30"
 #define TIMETOUPDATE 15000  // frequency of update - every 15 seconds
 
 // WIFI
 
 // FabLab
-char passphrase[] = "66616231666162326661623366"; //fab1fab2fab3f in HEX
-char ssid[] = "IAAC-FAB";
+//char passphrase[] = "3036633432623930343730353939383964636671"; 
+//char ssid[] = "Jazztel_DI8A";
+//boolean mode = WEP_MODE; //or WPA_MODE
+
+//char passphrase[] = "3036633432623930343730353939383964636671"; 
+//char ssid[] = "Jazztel_DI8A";
+//boolean mode = WEP_MODE; //or WPA_MODE
+
+char passphrase[] = "34363836363665646465633237373035643034";  //468666eddec27705d04
+char ssid[] = "Jazztel_6c3E";
 boolean mode = WEP_MODE; //or WPA_MODE
 
 // Iaac

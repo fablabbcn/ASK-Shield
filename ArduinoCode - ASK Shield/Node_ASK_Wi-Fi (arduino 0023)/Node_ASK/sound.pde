@@ -30,18 +30,22 @@ int getSound(int micPin)
 
   lastValue = smoothValue;
 
-  dbValue = computeFscale(50, 800, 18, 92, smoothValue, 5.5); // logarithm response mapping!!!
+//  dbValue = computeFscale(50, 800, 18, 92, smoothValue, 5.5); // logarithm response mapping!!!
 
-//  dbValue = computeFscale(50, 800, 35, 92, smoothValue, 5.5); // logarithm response mapping!!!
+//    dbValue = computeFscale( 50, 800, 11, 92, smoothValue, 5.5); // logarithm response mapping!!!
+
+//  dbValue = computeFscale(50, 800, 18, 92, smoothValue, 5.5); // logarithm response mapping!!!
+
+  dbValue = computeFscale(50, 1000, 35, 92, smoothValue, 5.5); // logarithm response mapping!!!
 
 
-  //  if(((int)prevsmoothValue) != ((int)smoothValue))
-  //  {
-  //    Serial.print("sensor smooth: ");
-  //    Serial.print((int)smoothValue);
-  //    Serial.print("  DB ");
-  //    Serial.println(dbValue);
-  //  }
+  if(((int)prevsmoothValue) != ((int)smoothValue))
+  {
+    Serial.print("sensor smooth: ");
+    Serial.print((int)smoothValue);
+    Serial.print("  DB ");
+    Serial.println(dbValue);
+  }
 
 
   return dbValue;

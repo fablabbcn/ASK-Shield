@@ -4,7 +4,11 @@
 
 //#define TGS4161_350  0.29 // victor
 //#define TGS4161_350  0.09
-#define TGS4161_350  0.31
+//#define TGS4161_350  0.31
+//#define TGS4161_350  0.28 //333
+
+
+#define TGS4161_350  0.332
 
 //#define TGS4161_350  0.32
 

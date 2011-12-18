@@ -4,14 +4,14 @@
 /* Debugging! */
 
 #define debuggingsensors false // if true turns off xbee and debuggs the sensors in serial
-
+#define serialpublish true // if true turns off xbee and debuggs the sensors in serial
+#define xbeepublish false  // if true turns off xbee and debuggs the sensors in serial
 
 /* Settings */
 
-
 // PACHUBE DEF
 
-#define PACHUBE_FEED 25978  //Pachube feed number to send the data to
+#define PACHUBE_FEED 42121  //Pachube feed number to send the data to
 XBeeAddress64 coordAddr = XBeeAddress64(0x0013A200, 0x407A1FB0);  //Network coordinator forwards data to Pachube
 
 #define transmitpachube 10 // every 2 sensor readings
@@ -76,14 +76,13 @@ void setup() {
   pinMode(figarocircuit, OUTPUT);    
   pinMode(blinkpin, OUTPUT);
 
-  if (debuggingsensors == false) {                  
-    xbee.begin(9600);               //does Serial.begin()
-    delay(5000);                    //give the XBee time to associate
+  if (xbeepublish == true) {     
+    xbee.begin(9600); 
+    delay(5000);    
   } 
   else {
-    Serial.begin(9600);               //does Serial.begin()
+    Serial.begin(9600);  
   }
-
 }
 
 
@@ -95,27 +94,27 @@ void loop(void) {
 
   msNow = millis();
 
-  if (debuggingsensors == false) {                  
-    readXBee();                                  //check for incoming XBee traffic
-  }
+  if (xbeepublish == true) {    
+    readXBee();                                
+  } 
 
 
-  if (msNow > msLast + readsensors || debuggingsensors == true) {                 //defined at readsensors
+  if (msNow > msLast + readsensors | debuggingsensors == true) {                 //defined at readsensors
 
     msLast = msNow;
-
 
     temp = getTemp(temppin, sensorreadings); 
     humidity = getHumidity(humpin, sensorreadings); 
     light = getLight(lightpin, sensorreadings); 
     sound = getSound(micpin); 
-//    tgs2442 = getTgs2442(tgspin, sensorreadings); 
+    //    tgs2442 = getTgs2442(tgspin, sensorreadings); 
     tgs4161 = getTgs4161(tgspin); 
 
-
-    if (seconds++ == transmitpachube && debuggingsensors == false) {                  
-      seconds = 0;
-      txPachube();
+    if (xbeepublish == true) {            
+      if (seconds++ == transmitpachube) {                 
+        seconds = 0;
+        txPachube();
+      }
     }
 
     if (debuggingsensors == true) { 
@@ -138,6 +137,26 @@ void loop(void) {
       Serial.println(tgs4161);        
     }
 
+    if (serialpublish == true) { 
+      Serial.print("$"); 
+      Serial.print("TEMP,");      
+      Serial.print(temp);
+      Serial.print(",");  
+      Serial.print("HUM,");            
+      Serial.print(humidity);
+      Serial.print(",");  
+      Serial.print("LIGHT,");            
+      Serial.print(light);   
+      Serial.print(","); 
+      Serial.print("NOISE,");            
+      Serial.print(sound); 
+      Serial.print(",");
+      Serial.print("CO2,");                  
+      Serial.print(tgs4161);
+      Serial.println();      
+
+    }
+
     digitalWrite(blinkpin, blink = !blink);  //blink the heartbeat LED
 
   }
@@ -145,6 +164,17 @@ void loop(void) {
 
 
 /* Sensor global methods are now on the methods tab */
+
+
+
+
+
+
+
+
+
+
+
 
 
 

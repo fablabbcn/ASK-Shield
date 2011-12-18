@@ -1,5 +1,6 @@
+
 /*----------------------------------------------------------------------*
- * ASK SHIELD Firmware (Not 1.0 compatible)                             *
+ * ASK SHIELD Wi-Fi Firmware (Not 1.0 compatible)                       *
  *                                                                      *
  * IAAC + Hangar + FabLabBcn                                            *
  *                                                                      *

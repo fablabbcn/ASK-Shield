@@ -40,7 +40,6 @@ void setup(void) {
 }
 
 void loop(void) {
-//    Serial.println("looping!");
     static boolean blink;
 
     msNow = millis();                            //get the current "time" in milliseconds

@@ -3,7 +3,7 @@
 
 /* Debugging! */
 
-#define debuggingsensors true // if true turns off xbee and debuggs the sensors in serial
+#define debuggingsensors false // if true turns off xbee and debuggs the sensors in serial
 
 #define logsd false // if true turns off xbee and debuggs the sensors in serial
 
@@ -27,7 +27,7 @@
 #define figarocircuit 6 // Sensing VCC tgs 2442
 
 
-#define sensorreadings 10
+#define sensorreadings 30
 
 #define readsensors 1000 // one second
 
