@@ -27,6 +27,7 @@ void setup() {
   
   Serial.begin(9600);
   
+  // CALIBRATION OF SOUND SENSOR ON START
   calSound();
 
 }
