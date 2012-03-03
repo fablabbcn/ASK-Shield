@@ -1,14 +1,5 @@
 /* ASK Shield - Sound Level ELECTREC CAPSULE */
 
-/*
-TO DO:
-Implementation of DBspl equation:
-20*log(400/0.005) 
-SQL = 20*log10((average*5)/1000);
-http://es.wikipedia.org/wiki/Decibelio
-http://es.wikipedia.org/wiki/Nivel_de_presi%C3%B3n_sonora
-*/
-
 //SMOTHING FILTER CONSTANT
 #define alphaSound 0.98
 
@@ -31,7 +22,6 @@ void calSound()
   soundSilence = getAverage(micpin, 1000, 2);
   Serial.print("sound calibration: ");
   Serial.println(soundSilence); 
- 
 }
 
 
@@ -50,7 +40,6 @@ int getSound(byte micPin)
     if(smoothValue < 0)  smoothValue = 0;
     lastValue = smoothValue;
 
-    //dbValue = 20*log10((smoothValue*5)/1000);
     dbValue = computeFscale( minSound, maxSound, 40, 95, smoothValue, 6.5); // logarithm response mapping - 5.5!!!
 
     if(debugSound)

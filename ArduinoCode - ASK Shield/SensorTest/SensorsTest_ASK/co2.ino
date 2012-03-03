@@ -1,6 +1,6 @@
 /* ASK Shield - CO2 TGS4161 */
 
-/* Linearization equation from Libelium Forum (All values in millivolts)
+/* Linealitation equation from Libelium Forum (All values in millivolts)
  y = 62.877*log(x) - 158.631 
  x = 10^( (y + 158.631)/62.877 )
  x= pow(10, ((y + 158,631)/62,877));
