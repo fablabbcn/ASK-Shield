@@ -27,7 +27,7 @@ void setup() {
   
   Serial.begin(9600);
   
-  calSound();
+  //calSound();
 
 }
 
