@@ -27,7 +27,12 @@ void setup() {
   
   Serial.begin(9600);
   
+<<<<<<< HEAD
   //calSound();
+=======
+  // CALIBRATION OF SOUND SENSOR ON START
+  calSound();
+>>>>>>> parent of 60e6b91... Revert 183f500d157fc675061edb11780492fc826918a6^..HEAD
 
 }
 

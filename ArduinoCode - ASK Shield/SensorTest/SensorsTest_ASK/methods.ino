@@ -48,6 +48,8 @@ int getPeak(byte peakPin, int peakNum, int del)
   return(valueMax);
 }
 
+
+
 float computeFscale( float originalMin, float originalMax, float newBegin, float
 newEnd, float inputValue, float curve){
 
