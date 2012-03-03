@@ -3,8 +3,7 @@
 /*
 TO DO:
 Implementation of DBspl equation:
-20*log(400/0.005) 
-SQL = 20*log10((average*5)/1000);
+20*log(P1/P0) 
 http://es.wikipedia.org/wiki/Decibelio
 http://es.wikipedia.org/wiki/Nivel_de_presi%C3%B3n_sonora
 */
@@ -13,7 +12,7 @@ http://es.wikipedia.org/wiki/Nivel_de_presi%C3%B3n_sonora
 #define alphaSound 0.98
 
 //LIMITS FOR CALIBRATION SENSOR
-#define minSound  32
+#define minSound  15
 #define maxSound  300
 int soundSilence = 530;
 
@@ -22,7 +21,9 @@ int soundSilence = 530;
 
 int dbValue;
 double smoothValue;
+double smoothDbValue;
 double lastValue;
+double lastDbValue;
 double newValue;
 
 
@@ -41,7 +42,7 @@ int getSound(byte micPin)
   for(int i = 0; i<500 ; i++) // to ensure the filter is stable
   {   
     newValue = analogRead(micpin); // take measurement here  
-    //newValue = getAverage(micpin, 100, 25); // take measurement here every 25us (40khz)
+    //newValue = getAverage(micpin, 10, 25); // take measurement here every 25us (40khz)
 
     if (newValue > soundSilence) newValue = (newValue-soundSilence)*2;
     else newValue = (soundSilence-newValue)*2;
@@ -50,9 +51,12 @@ int getSound(byte micPin)
     if(smoothValue < 0)  smoothValue = 0;
     lastValue = smoothValue;
 
-    //dbValue = 20*log10((smoothValue*5)/1000);
-    dbValue = computeFscale( minSound, maxSound, 40, 95, smoothValue, 6.5); // logarithm response mapping - 5.5!!!
+    //dbValue = 20*log10(smoothValue*smoothValue*2); //NOT WORKING IN THE CORRECT SCALE
+    dbValue = computeFscale( minSound, maxSound, 40, 99, smoothValue, 7.5); // logarithm response mapping - 5.5!!!
 
+    smoothDbValue = alphaSound * smoothDbValue + (1 - alphaSound) * dbValue;
+    //lastDbValue = smoothDbValue;
+    
     if(debugSound)
     {
       Serial.print("sensor RAW: ");
@@ -64,7 +68,7 @@ int getSound(byte micPin)
     }
   }
 
-  return dbValue;
+  return smoothDbValue;
 
 }
 
