@@ -16,7 +16,7 @@
 #define TGS4161_350  0.35 
 
 //SERIAL DEBUGING
-#define debugCO2 1
+#define debugCO2 0
 
 int figaroCO2Val = 0;
 float ppm = 0;
@@ -65,7 +65,7 @@ int getTgs4161(byte tgsPin)
     }
   }
 
-  //digitalWrite(figaroCO2Heater, HIGH); // turn OFF heater VCC 
+  digitalWrite(figaroCO2Heater, HIGH); // turn OFF heater VCC 
   
   //Serial.print("Final PPM: ");
   //Serial.println( ppm );

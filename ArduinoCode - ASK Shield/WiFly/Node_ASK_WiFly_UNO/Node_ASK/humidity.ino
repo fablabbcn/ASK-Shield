@@ -1,6 +1,6 @@
 /* ASK Shield - Humidity 808H5V5 */
 
-int getHumidity(byte humidityPin, int sensorReadings) 
+int getHum(byte humidityPin, int sensorReadings) 
 {
 
   return (computeVolts(getAverage(humidityPin, sensorReadings, 1))-0.8)/0.031;

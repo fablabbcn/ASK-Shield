@@ -1,14 +1,14 @@
-
+/* ASK Shield - Sensors shared functions */
 
 float computeVolts(int rawADC) {
-  return (rawADC*vref)/1023.0;
+  return (rawADC*vref)/1024.0;
 }
 
 float computeAdc(float volts) {
   return (volts*1023.0)/vref;
 }
 
-int getAverage(byte sensorPin, int avgNum, int del) {
+int getAverage(int sensorPin, int avgNum, int del) {
   int i=0;
   long sum = 0;
   unsigned int value = 0;
@@ -27,7 +27,7 @@ int getAverage(byte sensorPin, int avgNum, int del) {
 }
 
 
-int getPeak(byte peakPin, int peakNum, int del)
+int getPeak(int peakPin, int peakNum, int del)
 {
   int i=0;
   unsigned int value = 0;
@@ -47,8 +47,6 @@ int getPeak(byte peakPin, int peakNum, int del)
   }
   return(valueMax);
 }
-
-
 
 float computeFscale( float originalMin, float originalMax, float newBegin, float
 newEnd, float inputValue, float curve){

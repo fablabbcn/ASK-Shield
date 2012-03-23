@@ -25,6 +25,10 @@ boolean mode = WEP_MODE; //or WPA_MODE
 //char ssid[] = "IAAC";
 //boolean mode = WEP_MODE; //or WPA_MODE
 
+//IAAC Fab
+//char passphrase[] = "66616231666162326661623366"; //1f2f3f4f5f6f7 in HEX
+//char ssid[] = "IAAC-FAB";
+
 
 
 Client client("api.pachube.com", 80);

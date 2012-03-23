@@ -2,7 +2,8 @@
 /* ASK Shield - TEST AND CALIBRATION SENSORS */
 /*********************************************/
 
-#define vref 5.0 // For the computeVolts(); funtcion.
+#define vref 4.95 // For the computeVolts(); funtcion.
+
 #define micpin A0
 #define lightpin A1
 #define temppin A2
@@ -28,17 +29,12 @@ void setup() {
   Serial.begin(9600);
 
   // CALIBRATION OF SOUND SENSOR ON START
-  calSound();
+  //calSound();
 
 }
 
 void loop() 
 {
-
-  //getSound(micpin);
-  //delay(1000);
-  //getTgs4161();
-  //delay(1000);
    
   Serial.print("Light->");
   Serial.print( getLight(lightpin, 100) );
@@ -47,9 +43,10 @@ void loop()
   Serial.print(" Temp->");
   Serial.print( getTemp(temppin, 100) );
   Serial.print(" DB->");
-  Serial.print( getSound(micpin) );
+  Serial.println( getSound(micpin) );
   Serial.print(" CO2->");
-  Serial.println( getTgs4161(tgspin) );
-
+  //Serial.println( getTgs4161(tgspin) );
+  Serial.println();
+  
 }
 
