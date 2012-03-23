@@ -1,21 +1,22 @@
+
 #include "WiFly.h"
 
 // PACHUBE
-#define PACHUBE_FEED "42124"
+//#define PACHUBE_FEED "42124"  // HANGAR
+//#define PACHUBE_FEED "53197"  // IAAC 
+#define PACHUBE_FEED "53214"  // Bordils
+
 #define APIKEY "nKn8ldoeUYHFdcLymuWAAm6KfblczFJFCIc8GT2_G30"
 
 // WIFI
-
 char passphrase[] = "m1cr0fug4s";
 char ssid[] = "hangar_nau3";
 boolean mode = WPA_MODE; //or WEP_MODE
 
 WiFlyClient client("api.pachube.com", 80);
 
-
 uint32_t timeLastUpdated;
 int i;
-//char buff[64];
 char buff[96];  // message lenght 
 
 void setupWiFly() {

@@ -68,7 +68,6 @@ void setup() {
 void loop() {
 
   static boolean blink;
-  static int seconds = 0;             //counts seconds so we can transmit once a minute
 
   msNow = millis();
 
@@ -113,7 +112,7 @@ void loop() {
 
   }
 
-
+  // Detection of wifi desconection using ping function!!!!! if yes, reconnect again!
 
 }
 

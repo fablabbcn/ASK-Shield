@@ -13,7 +13,9 @@
 #define heatTime 30000
 
 //CALIBRATION FOR EVERY CO2 SENSOR
-#define TGS4161_350  0.35 
+//#define TGS4161_350  0.145 // Iaac
+//#define TGS4161_350  0.345  // Hangar
+#define TGS4161_350  0.68 // Bordils 
 
 //SERIAL DEBUGING
 #define debugCO2 1

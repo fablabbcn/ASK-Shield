@@ -43,9 +43,9 @@ void loop()
   Serial.print(" Temp->");
   Serial.print( getTemp(temppin, 100) );
   Serial.print(" DB->");
-  Serial.println( getSound(micpin) );
+  //Serial.println( getSound(micpin) );
   Serial.print(" CO2->");
-  //Serial.println( getTgs4161(tgspin) );
+  Serial.println( getTgs4161(tgspin) );
   Serial.println();
   
 }

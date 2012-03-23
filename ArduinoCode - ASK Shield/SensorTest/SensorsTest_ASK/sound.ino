@@ -12,7 +12,7 @@ http://es.wikipedia.org/wiki/Nivel_de_presi%C3%B3n_sonora
 #define alphaSound 0.98
 
 //LIMITS FOR CALIBRATION SENSOR
-#define minSound  8
+#define minSound  4
 #define maxSound  150
 int soundSilence = 530;
 
